@@ -23,8 +23,4 @@
     <ProjectReference Include="..\..\Core\E-CommerceApi.Application\E-CommerceApi.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Concrets\" />
-  </ItemGroup>
-
 </Project>

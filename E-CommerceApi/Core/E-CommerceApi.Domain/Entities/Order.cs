@@ -9,7 +9,7 @@ namespace E_CommerceApi.Domain.Entities
             Products = new HashSet<Product>();
         }
 
-        public int CustomerId {  get; set; } 
+        public Guid CustomerId {  get; set; } 
 
         public string Description {  get; set; }
 

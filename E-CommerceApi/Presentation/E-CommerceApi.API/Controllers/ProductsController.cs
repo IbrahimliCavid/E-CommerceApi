@@ -1,4 +1,5 @@
 ﻿using E_CommerceApi.Application.Repositories;
+using E_CommerceApi.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,17 +19,16 @@ namespace E_CommerceApi.API.Controllers
         }
 
         [HttpGet]
-        public async void Get()
+        public async Task Get()
         {
-           await _productWriteRepository.AddRangeAsync(new()
-            {
+          
+        }
 
-                new () {Id = Guid.NewGuid(), CreatedDate = DateTime.UtcNow, Name= "Product1", Stock = 10, Price=100},
-                new () {Id = Guid.NewGuid(), CreatedDate = DateTime.UtcNow, Name= "Product2", Stock = 10, Price=200},
-                new () {Id = Guid.NewGuid(), CreatedDate = DateTime.UtcNow, Name= "Product3", Stock = 10, Price=300}
-            });
-
-            await _productWriteRepository.SaveAsync();
+        [HttpGet("id")]
+        public async Task<IActionResult> Get(string id)
+        {
+            Product product = await _productReadRepository.GetByIdAsync(id);
+            return Ok(product);
         }
     }
 }
