@@ -11,24 +11,21 @@ namespace E_CommerceApi.API.Controllers
     {
         private readonly IProductReadRepository _productReadRepository;
         private readonly IProductWriteRepository _productWriteRepository;
+        private readonly IOrderReadRepository _orderReadRepository;
 
-        public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository)
+        public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, IOrderReadRepository orderReadRepository)
         {
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
+            _orderReadRepository = orderReadRepository;
         }
 
         [HttpGet]
-        public async Task Get()
+        public async Task<IActionResult>  Get()
         {
-          
+            return Ok("Merhaba");
         }
 
-        [HttpGet("id")]
-        public async Task<IActionResult> Get(string id)
-        {
-            Product product = await _productReadRepository.GetByIdAsync(id);
-            return Ok(product);
-        }
+     
     }
 }
