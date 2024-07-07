@@ -18,6 +18,4 @@ export class AppComponent {
   }
 }
 
-$.get("https://localhost:7204/api/Products", data => {  
-  console.log(data)
-});
+
