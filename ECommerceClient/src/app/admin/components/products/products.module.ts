@@ -25,7 +25,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatSidenavModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+
   ]
 })
 export class ProductsModule { }

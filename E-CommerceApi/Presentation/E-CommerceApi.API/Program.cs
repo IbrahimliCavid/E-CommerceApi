@@ -1,5 +1,8 @@
 
+using E_CommerceApi.Application.Validators.Products;
+using E_CommerceApi.Infrastructure.Filters;
 using E_CommerceApi.Persistence;
+using FluentValidation.AspNetCore;
 
 namespace E_CommerceApi.API
 {
@@ -13,7 +16,9 @@ namespace E_CommerceApi.API
 
             builder.Services.AddPersistenceServices();
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options => options.Filters.Add<ValidationFilter>())
+                .AddFluentValidation(configuration=> configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>())
+                .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
 
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

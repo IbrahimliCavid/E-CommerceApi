@@ -37,6 +37,10 @@ namespace E_CommerceApi.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(VMCreateProduct viewModel)
         {
+            if (ModelState.IsValid)
+            {
+
+            }
             var model = VMCreateProduct.ToModel(viewModel);
            await _productWriteRepository.AddAsync(model);
 
