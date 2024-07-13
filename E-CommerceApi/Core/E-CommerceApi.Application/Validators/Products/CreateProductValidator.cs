@@ -14,6 +14,7 @@ namespace E_CommerceApi.Application.Validators.Products
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
+                .WithMessage("Zəhmət olmasa məhsul adını boş buraxmayın!!!")
                 .NotNull()
                 .WithMessage("Zəhmət olmasa məhsul adını boş buraxmayın!!!")
                 .MaximumLength(150)
@@ -27,7 +28,7 @@ namespace E_CommerceApi.Application.Validators.Products
                 .Must(x => x >= 0 )
                 .WithMessage("Məhsul sayı 0-dan az ola bilməz!!!");
 
-            RuleFor(x => x.Price)
+            RuleFor(x => x.Price)       
             .NotEmpty()
             .NotNull()
             .WithMessage("Qiymət  boş buraxıla bilməz!!!")

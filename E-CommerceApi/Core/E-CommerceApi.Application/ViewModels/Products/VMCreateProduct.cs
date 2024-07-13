@@ -11,20 +11,11 @@ namespace E_CommerceApi.Application.ViewModels.Products
     {
         public string Name { get; set; }
 
-        public int Stock { get; set; }
+        public int? Stock { get; set; }
 
-        public float Price { get; set; }
+        public float? Price { get; set; }
 
-        public static Product  ToModel(VMCreateProduct viewModel)
-        {
-            Product model = new()
-            {
-                Name = viewModel.Name,
-                Price = viewModel.Price,
-                Stock = viewModel.Stock
-            };
-            return model;
-        }
+        
 
     }
 }

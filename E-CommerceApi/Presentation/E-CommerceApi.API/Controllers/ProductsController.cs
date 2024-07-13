@@ -35,28 +35,33 @@ namespace E_CommerceApi.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(VMCreateProduct viewModel)
-        {
+        public async Task<IActionResult> Post(VMCreateProduct model)
+         {
             if (ModelState.IsValid)
             {
-
+                
             }
-            var model = VMCreateProduct.ToModel(viewModel);
-           await _productWriteRepository.AddAsync(model);
+           
+           await _productWriteRepository.AddAsync(new()
+           {
+               Name = model.Name,
+               Stock = model.Stock.Value,
+               Price = model.Price.Value
+           });
 
             await _productWriteRepository.SaveAsync();
             return StatusCode((int)HttpStatusCode.Created);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(VMUpdateProduct viewModel)
+        public async Task<IActionResult> Update(VMUpdateProduct model)
         {
-            Product model = await _productReadRepository.GetByIdAsync(viewModel.Id);
-            model.Name = viewModel.Name;
-            model.Price = viewModel.Price;
-            model.Stock = viewModel.Stock;
+            Product product = await _productReadRepository.GetByIdAsync(model.Id);
+            model.Name = model.Name;
+            model.Price = model.Price;
+            model.Stock = model.Stock;
            
-             _productWriteRepository.Update(model);
+             _productWriteRepository.Update(product);
             await _productWriteRepository.SaveAsync();
             return Ok();
         }
