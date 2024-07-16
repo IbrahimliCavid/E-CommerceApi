@@ -21,7 +21,7 @@ export class HttpClientService {
   get<T>(requestParametrs: Partial<RequestParametrs>, id? : string) : Observable<T> {
     let url: string = '';
     if (requestParametrs.fullEndPoint) url = requestParametrs.fullEndPoint;
-    else url = `${this.url(requestParametrs)}${id? `/${id}` : ""}`;
+    else url = `${this.url(requestParametrs)}${id? `/${id}` : ""}${requestParametrs.queryString ? `?${requestParametrs.queryString}` : ""}`;
 
     return this.httpClient.get<T>(url, {headers : requestParametrs.headers});
   }
@@ -29,7 +29,7 @@ export class HttpClientService {
   post<T>(requestParametrs: Partial<RequestParametrs>, body : Partial<T>) : Observable<T> {
     let url : string = "";
     if(requestParametrs.fullEndPoint) url = requestParametrs.fullEndPoint;
-    else url = this.url(requestParametrs);
+    else url = `${this.url(requestParametrs)}${requestParametrs.queryString ? `?${requestParametrs.queryString}` : ""}`;
 
    return this.httpClient.post<T>(url, body, {headers: requestParametrs.headers} )
   }
@@ -38,7 +38,7 @@ export class HttpClientService {
     let url : string = "";
 
     if(requestParametrs.fullEndPoint) url = requestParametrs.fullEndPoint;
-    else url = this.url(requestParametrs);
+    else url = `${this.url(requestParametrs)}${requestParametrs.queryString ? `?${requestParametrs.queryString}` : ""}`;
 
     return this.httpClient.put<T>(url, body, {headers: requestParametrs.headers});
   }
@@ -46,7 +46,7 @@ export class HttpClientService {
   delete<T>(requestParametrs: Partial<RequestParametrs>, id : string) : Observable<T> {
     let url : string = "";
     if(requestParametrs.fullEndPoint) url = requestParametrs.fullEndPoint;
-    else url = `${this.url(requestParametrs)}/${id}`
+    else url = `${this.url(requestParametrs)}/${id}${requestParametrs.queryString ? `?${requestParametrs.queryString}` : ""}`
 
     return this.httpClient.delete<T>(url, {headers : requestParametrs.headers});
   }
@@ -55,6 +55,7 @@ export class HttpClientService {
 export class RequestParametrs {
   controller?: string;
   action?: string;
+  queryString? : string;
   headers?: HttpHeaders;
   baseUrl?: string;
   fullEndPoint?: string;

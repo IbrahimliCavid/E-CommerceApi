@@ -28,9 +28,10 @@ errorCallBack(message);
   });  
 }
 
-async read(successCallBack? : () => void, errorCallBack? : (errorMesage : string) => void) : Promise<ListProduct[]>{
-  let promiseData : Promise<ListProduct[]> =  this.httpClientService.get<ListProduct[]>({
-    controller: "products" 
+async read(page: number = 0, size: number = 5, successCallBack? : () => void, errorCallBack? : (errorMesage : string) => void) : Promise<{totalCount : number, products : ListProduct[]}>{
+  let promiseData : Promise<{totalCount : number, products : ListProduct[]}> =  this.httpClientService.get<{totalCount : number, products : ListProduct[]}>({
+    controller: "products",
+    queryString : `page=${page}&size=${size}`
   }).toPromise();
 
   promiseData.then(x => successCallBack())
