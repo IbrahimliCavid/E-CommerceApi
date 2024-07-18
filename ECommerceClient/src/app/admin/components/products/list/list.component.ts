@@ -10,6 +10,7 @@ import {
   Position,
 } from 'src/app/services/admin/alertify.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
+declare var $ : any;
 
 @Component({
   selector: 'app-list',
@@ -52,6 +53,13 @@ export class ListComponent extends BaseComponent implements OnInit {
       );
     this.dataSource = new MatTableDataSource<ListProduct>(allProducts.products);
     this.paginator.length = allProducts.totalCount;
+  }
+
+  delete(id, event){
+    let img : HTMLImageElement = event.srcElement;
+ 
+    $(img.parentElement.parentElement).fadeOut(2000)
+    
   }
 
   async pageChanged() {

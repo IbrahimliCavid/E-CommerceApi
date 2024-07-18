@@ -35,7 +35,7 @@ namespace E_CommerceApi.Persistence.Repositories
             var query = Table.AsQueryable();
             if (!tracking)
                 query = query.AsNoTracking();
-            return await query.FirstOrDefaultAsync(x=>x.Id == Guid.Parse(id));
+            return await query.FirstOrDefaultAsync(x => x.Id == Guid.Parse(id));
 
         }
 
