@@ -1,6 +1,9 @@
-import { Directive, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerType } from 'src/app/base/base.component';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
-
+import { ProductService } from 'src/app/services/common/models/product.service';
+declare var $ : any;
 @Directive({
   selector: '[appDelete]'
 })
@@ -8,17 +11,29 @@ export class DeleteDirective {
 
   constructor(private element: ElementRef,
     private _renderer: Renderer2,
-    private httpClientService : HttpClientService
+    private productService : ProductService,
+    private spinner : NgxSpinnerService
   ) {
       const img = _renderer.createElement("img");
-      img.setAttribute({
-        "src" : "../../../../../assets/Images/DeletIcon.png",
-        "style" : "cursor : pointer",
-        "alt" : "Delete image",
-        "width" : "22px"
-      })
+      img.setAttribute("src", "assets/Images/DeletIcon.png");
+      img.setAttribute("style", "cursor: pointer");
+      img.setAttribute("alt", "Delete image");
+      img.width = 22;
 
       _renderer.appendChild(element.nativeElement, img)
+    }
+ 
+    @Input() id : string;
+    @Output() callBack : EventEmitter<any> = new EventEmitter();
+
+    @HostListener("click")
+   async onClick(){
+    this.spinner.show(SpinnerType.BallPlus);
+      const td :HTMLTableCellElement = this.element.nativeElement;
+     await this.productService.delete(this.id);
+      $(td.parentElement).fadeOut(2000, ()=>{
+        this.callBack.emit();
+      })
     }
 
 }

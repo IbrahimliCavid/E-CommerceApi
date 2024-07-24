@@ -56,7 +56,7 @@ export class ListComponent extends BaseComponent implements OnInit {
   }
 
   delete(id, event){
-    let img : HTMLImageElement = event.srcElement;
+    const  img : HTMLImageElement = event.srcElement;
  
     $(img.parentElement.parentElement).fadeOut(2000)
     
