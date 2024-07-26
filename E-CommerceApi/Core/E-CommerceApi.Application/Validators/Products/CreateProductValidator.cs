@@ -1,4 +1,5 @@
 ﻿using E_CommerceApi.Application.ViewModels.Products;
+using E_CommerceApi.Infrastructure.BaseMessages;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -14,26 +15,23 @@ namespace E_CommerceApi.Application.Validators.Products
         {
             RuleFor(x => x.Name)
                 .NotEmpty()
-                .WithMessage("Zəhmət olmasa məhsul adını boş buraxmayın!!!")
-                .NotNull()
-                .WithMessage("Zəhmət olmasa məhsul adını boş buraxmayın!!!")
+                .WithMessage(UiMessage.NotEmptyMessage("Ad"))
                 .MaximumLength(150)
+                .WithMessage(UiMessage.MaxLengthMessage("Ad", 150))
                 .MinimumLength(3)
-                .WithMessage("Məhsul adı 3 simvoldan kiçik 150 simvoldan böyük ola bilməz!!!");
+                .WithMessage(UiMessage.MinLengthMessage("Ad", 3));
 
             RuleFor(x => x.Stock)
                 .NotEmpty()
-                .NotNull()
-                .WithMessage("Məhsul sayı boş buraxıla bilməz!!!")
+                .WithMessage(UiMessage.NotEmptyMessage("Məhsul sayı"))
                 .Must(x => x >= 0 )
-                .WithMessage("Məhsul sayı 0-dan az ola bilməz!!!");
+                .WithMessage(UiMessage.MinValueMessage("Məhsul sayı", 0));
 
             RuleFor(x => x.Price)       
             .NotEmpty()
-            .NotNull()
-            .WithMessage("Qiymət  boş buraxıla bilməz!!!")
+            .WithMessage(UiMessage.NotEmptyMessage("Qiymət"))
             .Must(x => x >= 0 )
-            .WithMessage("Qiymət 0-dan az ola bilməz!!!");
+            .WithMessage(UiMessage.MinValueMessage("Qiymət", 0));
         }
     }
 }

@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Diqqət</h2>
+<mat-dialog-content>
+  <p>Silmək istədiyinizə əminsinizmi?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Xeyr</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Bəli</button>
+</mat-dialog-actions>

@@ -49,7 +49,7 @@ namespace E_CommerceApi.Infrastructure.BaseMessages
             return $"{propName} {count} simvoldan böyük ola bilməz!";
         }
 
-        public static string NotEmptyMessage(string propName, int count)
+        public static string NotEmptyMessage(string propName)
         {
             return $"{propName} boş ola bilməz!";
         }

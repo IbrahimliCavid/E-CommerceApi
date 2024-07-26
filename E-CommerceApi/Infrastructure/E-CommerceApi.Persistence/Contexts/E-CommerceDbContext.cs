@@ -20,6 +20,7 @@ namespace E_CommerceApi.Persistence.Contexts
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<FeedBack> FeedBacks {  get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
