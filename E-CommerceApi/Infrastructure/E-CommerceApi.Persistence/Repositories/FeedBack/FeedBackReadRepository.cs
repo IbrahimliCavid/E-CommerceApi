@@ -5,7 +5,7 @@ using E_CommerceApi.Domain.Entities;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using E_CommerceApi.Application.Repositories.FeedBack;
+using E_CommerceApi.Application.Repositories;
 
 namespace E_CommerceApi.Persistence.Repositories
 {
