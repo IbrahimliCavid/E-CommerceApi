@@ -10,7 +10,7 @@ showSpinner(spinnerNameType:SpinnerType){
 
   setTimeout(() => {
     this.hideSpinner(spinnerNameType)
-  }, 2000);
+  }, 100);
 }
 
 hideSpinner(spinnerNameType:SpinnerType){

@@ -14,6 +14,9 @@ const routes: Routes = [
         (module => module.ProductsModule)},
         {path:"orders", loadChildren:()=>import("./admin/components/orders/orders.module").then 
           (module => module.OrdersModule)},
+          {path:"feed-backs", loadChildren:()=> import("./admin/components/feed-backs/feed-backs.module").then
+            (module => module.FeedBacksModule)
+          }
   ]},
   {path:"", component:HomeComponent},
   {path:"baskets", loadChildren: () => import("./ui/components/baskets/baskets.module").then
